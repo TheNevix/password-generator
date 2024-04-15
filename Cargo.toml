@@ -7,4 +7,3 @@ edition = "2021"
 
 [dependencies]
 rand = "0.8"
-passwords = "3.1.16"
