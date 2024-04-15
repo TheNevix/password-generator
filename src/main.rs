@@ -9,8 +9,8 @@ fn main() {
     println!("Enter the amount of passwords you want to generate:");
 
     //amount of passwords
-    let mut amount_of_passwords: u32;
-    let mut amount_of_chars: u32;
+    let amount_of_passwords: u32;
+    let amount_of_chars: u32;
 
     //ask for amount of pass
     loop {
