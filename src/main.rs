@@ -6,7 +6,6 @@ fn main() {
     //print info message
     println!("Welcome to Nevix's Password Generator!");
     println!("------------------------------------------------------------------");
-    println!("Enter the amount of passwords you want to generate:");
 
     //amount of passwords
     let amount_of_passwords: u32;
