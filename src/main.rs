@@ -1,17 +1,16 @@
-mod console_line;
-
+use cliclr::ConsoleLine;
+use cliclr::printers::print_colored_text;
 use std::io::{self, Error};
 use rand::{seq::IteratorRandom, *};
 use rand::seq::SliceRandom;
-use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
-use console_line::ConsoleLine;
+use termcolor::{Color, ColorChoice, StandardStream};
 
 fn main() {
     let mut stdout = StandardStream::stdout(ColorChoice::Always);
 
     //print info message
-    print_colored_text(ConsoleLine { text: String::from("Welcome to Nevix's Password Generator!"), color: Color::Magenta}, &mut stdout);
-    print_colored_text(ConsoleLine { text: String::from("------------------------------------------------------------------"), color: Color::Magenta}, &mut stdout);
+    print_colored_text(&ConsoleLine { text: String::from("Welcome to Nevix's Password Generator!"), color: Color::Magenta}, &mut stdout);
+    print_colored_text(&ConsoleLine { text: String::from("------------------------------------------------------------------"), color: Color::Magenta}, &mut stdout);
 
     //amount of passwords
     let amount_of_passwords: u32;
@@ -29,7 +28,7 @@ fn main() {
                 break;
             },
             Err(_) => {
-                print_colored_text(ConsoleLine { text: String::from("Please enter a valid number!"), color: Color::Magenta}, &mut stdout);
+                print_colored_text(&ConsoleLine { text: String::from("Please enter a valid number!"), color: Color::Magenta}, &mut stdout);
             }
         }
     }
@@ -46,7 +45,7 @@ fn main() {
                 break;
             },
             Err(_) => {
-                print_colored_text(ConsoleLine { text: String::from("Please enter a valid number!"), color: Color::Magenta}, &mut stdout);
+                print_colored_text(&ConsoleLine { text: String::from("Please enter a valid number!"), color: Color::Magenta}, &mut stdout);
             }
         }
     }
@@ -65,7 +64,7 @@ fn main() {
         println!("{}", pass);
     }
 
-    print_colored_text(ConsoleLine { text: String::from("Thank you for using Nevix's Password Generator! Cya!"), color: Color::Magenta}, &mut stdout);
+    print_colored_text(&ConsoleLine { text: String::from("Thank you for using Nevix's Password Generator! Cya!"), color: Color::Magenta}, &mut stdout);
     //exit
     println!("Press Enter to exit...");
     let mut _input = String::new();
@@ -158,11 +157,4 @@ fn shuffle_string(input: &String) -> String {
     let mut rng = thread_rng();
     chars.shuffle(&mut rng);
     chars.into_iter().collect()
-}
-
-fn print_colored_text(line: ConsoleLine, stdout: &mut StandardStream){
-    //set the color
-    stdout.set_color(ColorSpec::new().set_fg(Some(line.color))).unwrap();
-    println!("{}", line.text);
-    stdout.reset().unwrap();
 }
